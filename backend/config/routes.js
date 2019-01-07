@@ -1,8 +1,13 @@
 module.exports = app => {
     const {
-        save
-    } = app.api.user
+        user
+    } = app.api
 
     app.route('/users')
-        .post(save)
+        .post(user.save)
+        .get(user.get)
+
+    app.route('/users/:id')
+        .put(user.save)
+        .get(user.getById)
 }
