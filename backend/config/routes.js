@@ -5,7 +5,8 @@ module.exports = app => {
         user,
         category,
         article,
-        auth
+        auth,
+        stat
     } = app.api
 
     const {
@@ -56,4 +57,8 @@ module.exports = app => {
     app.route('/categories/:id/articles')
         .all(authenticate())
         .get(article.getByCategory)
+
+    app.route('/stats')
+        .all(authenticate())
+        .get(stat.get)
 }
