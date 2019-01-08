@@ -26,6 +26,7 @@ module.exports = app => {
         .all(authenticate())
         .put(admin(user.save))
         .get(admin(user.getById))
+        .delete(admin(user.remove))
 
     app.route('/categories')
         .all(authenticate())
