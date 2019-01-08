@@ -1,7 +1,8 @@
 module.exports = app => {
     const {
         user,
-        category
+        category,
+        article
     } = app.api
 
     app.route('/users')
@@ -24,4 +25,16 @@ module.exports = app => {
         .get(category.getById)
         .put(category.save)
         .delete(category.remove)
+
+    app.route('/articles')
+        .get(article.get)
+        .post(article.save)
+
+    app.route('/articles/:id')
+        .get(article.getById)
+        .put(article.save)
+        .delete(article.remove)
+
+    app.route('/categories/:id/articles')
+        .get(article.getByCategory)
 }
