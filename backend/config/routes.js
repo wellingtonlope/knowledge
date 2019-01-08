@@ -1,3 +1,5 @@
+const admin = require('./admin')
+
 module.exports = app => {
     const {
         user,
@@ -16,18 +18,18 @@ module.exports = app => {
 
     app.route('/users')
         .all(authenticate())
-        .post(user.save)
-        .get(user.get)
+        .post(admin(user.save))
+        .get(admin(user.get))
 
     app.route('/users/:id')
         .all(authenticate())
-        .put(user.save)
-        .get(user.getById)
+        .put(admin(user.save))
+        .get(admin(user.getById))
 
     app.route('/categories')
         .all(authenticate())
-        .get(category.get)
-        .post(category.save)
+        .get(admin(category.get))
+        .post(admin(category.save))
 
     //Cuidado com a ordem! tem que vir antes de /categories/:id
     app.route('/categories/tree')
@@ -37,19 +39,19 @@ module.exports = app => {
     app.route('/categories/:id')
         .all(authenticate())
         .get(category.getById)
-        .put(category.save)
-        .delete(category.remove)
+        .put(admin(category.save))
+        .delete(admin(category.remove))
 
     app.route('/articles')
         .all(authenticate())
-        .get(article.get)
-        .post(article.save)
+        .get(admin(article.get))
+        .post(admin(article.save))
 
     app.route('/articles/:id')
         .all(authenticate())
         .get(article.getById)
-        .put(article.save)
-        .delete(article.remove)
+        .put(admin(article.save))
+        .delete(admin(article.remove))
 
     app.route('/categories/:id/articles')
         .all(authenticate())
