@@ -2,8 +2,13 @@ module.exports = app => {
     const {
         user,
         category,
-        article
+        article,
+        auth
     } = app.api
+
+    app.post('/signup', user.save)
+    app.post('/signin', auth.signin)
+    app.post('/validateToken', auth.validateToken)
 
     app.route('/users')
         .post(user.save)
